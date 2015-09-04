@@ -98,7 +98,7 @@ cabal install
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-install -p .cabal/bin/%{name} .cabal/bin/ghc-pkg-dep %{buildroot}%{_bindir}
+install -p ~/.cabal/bin/%{name} ~/.cabal/bin/ghc-pkg-dep %{buildroot}%{_bindir}
 
 %files
 %license LICENSE
