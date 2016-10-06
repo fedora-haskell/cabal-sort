@@ -1,5 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
+%global debug_package %{nil}
+
 Name:           cabal-sort
 Version:        0.0.5.2
 Release:        1%{?dist}
