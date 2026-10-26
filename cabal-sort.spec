@@ -4,7 +4,7 @@
 %global ghc_major 9.12
 %global ghc_name ghc%{ghc_major}
 
-%global QuickCheck QuickCheck-2.16.0.0
+%global QuickCheck QuickCheck-2.17.1.0
 %global ansiterminal ansi-terminal-1.1.5
 %global ansiterminaltypes ansi-terminal-types-1.1.3
 %global colour colour-2.3.7
@@ -23,7 +23,7 @@
 %global subpkgs %{colour} %{ansiterminaltypes} %{ansiterminal} %{prettyprinter} %{prettyprinteransiterminal} %{semigroups} %{explicitexception} %{optparseapplicative} %{shellutility} %{splitmix} %{random} %{QuickCheck} %{utilityht} %{nonempty} %{comfortgraph}
 
 Name:           cabal-sort
-Version:        0.1.2.2
+Version:        0.1.2.3
 Release:        1%{?dist}
 Summary:        Topologically sort cabal packages
 
@@ -46,7 +46,6 @@ Source12:       https://hackage.haskell.org/package/%{semigroups}/%{semigroups}.
 Source13:       https://hackage.haskell.org/package/%{shellutility}/%{shellutility}.tar.gz
 Source14:       https://hackage.haskell.org/package/%{splitmix}/%{splitmix}.tar.gz
 Source15:       https://hackage.haskell.org/package/%{utilityht}/%{utilityht}.tar.gz
-Source16:       https://hackage.haskell.org/package/%{name}-%{version}/%{name}.cabal#/%{name}-%{version}.cabal
 # End cabal-rpm sources
 
 # Begin cabal-rpm deps:
@@ -104,6 +103,10 @@ call it will multiple directory names as arguments. However, when the
 constraint solver in cabal-install fails you may still use cabal-sort for an
 automated build.
 
+The program 'cabal-sort' may become relevant in future, again, because Cabal
+maintainers plan to remove 'cabal v1-install' feature, whereas 'Setup install'
+etc. shall remain.
+
 For uploading a set of packages to Hackage in the right order you may run
 
 > for dir in `find . -name "*.cabal" | fgrep -v _darcs | xargs cabal-sort
@@ -155,7 +158,6 @@ Related packages: 'rpmbuild-order'.
 %prep
 # Begin cabal-rpm setup:
 %setup -q -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a13 -a14 -a15
-cp -bp %{SOURCE16} %{name}.cabal
 # End cabal-rpm setup
 
 
@@ -204,6 +206,9 @@ help2man --no-info --version-string=%{version} %{buildroot}%{_bindir}/ghc-pkg-de
 
 
 %changelog
+* Mon Oct 26 2026 Jens-Ulrik Petersen <petersen@redhat.com> - 0.1.2.3-1
+- update to 1.2.3
+
 * Sun Jun 07 2026 Jens Petersen <petersen@redhat.com> - 0.1.2.2-1
 - update to 0.1.2.2 with ghc9.12
 
